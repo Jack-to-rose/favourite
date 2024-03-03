@@ -1,8 +1,8 @@
 const now = new Date()
 const NAME = "Rio";
 const DATE = "2024-03-03";
-const TIME = "T13:00:00";
-const RUN_TIME = 1800; //seconds
+const TIME = "T15:23:00";
+const RUN_TIME = 10; //seconds
 // const TIME_TO_RUN = (24 * 60 * 60 * 1000);
 const TIME_TO_RUN = (RUN_TIME * 1000);
 let birthdayDate = new Date(DATE + TIME);
@@ -14,6 +14,7 @@ let eventDate = new Date( yearOfTheEvent, birthdayDate.getMonth(), birthdayDate.
 const originalHTML = document.querySelector('.countdown-container').innerHTML;
 
 updateCountdown();
+animateTitle();
 
 function updateCountdown() {
     const countdownElement = document.getElementById("countdown");
@@ -34,11 +35,16 @@ function updateCountdown() {
         
         // Trigger confetti effect
         confettiEffect();
+        
+        // To change the logo
+        changeLogo('logo-modified.png');
+
         // Update the countdown every second
         setTimeout(updateCountdown, 1000);
         return;
     }
-    
+
+    changeLogo('logo.png');
     // To revert back to the original content
     document.querySelector('.countdown-container').innerHTML = originalHTML;
     
@@ -63,6 +69,25 @@ function isValidDate(dateString) {
     if (!dateString.match(regEx)) return false; // Invalid format
     const d = new Date(dateString + "T00:00:00");
     return !isNaN(d.getTime());
+}
+
+// Function to change the logo
+function changeLogo(newLogo) {
+    var favicon = document.getElementById('favicon');
+    if (favicon) {
+        favicon.href = newLogo;
+      } else {
+        console.error('Favicon element not found.');
+      }
+}
+
+function animateTitle() {
+    const title = document.title;
+    let i = 0;
+    setInterval(function() {
+        i = (i + 1) % title.length;
+        document.title = title.slice(0, i) + (i % 2 === 0 ? "" : "♡") + title.slice(i);
+    }, 500); // Adjust the interval for desired animation speed
 }
 
 function confettiEffect() {
