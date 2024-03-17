@@ -2,8 +2,8 @@ const now = new Date()
 const NAME = "Haema ❤️";
 const DATE = "2024-11-17";
 const TIME = "T00:00:00";
-const RUN_TIME = 10; //seconds
-// const RUN_TIME = (24 * 60 * 60);
+// const RUN_TIME = 10; //seconds
+const RUN_TIME = (24 * 60 * 60); //seconds
 const TIME_TO_RUN = (RUN_TIME * 1000);
 let birthdayDate = new Date(DATE + TIME);
 
